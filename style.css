@@ -1,0 +1,53 @@
+body {
+    display: block;
+}
+
+.container {
+    margin: 200px auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.volume {
+    font-size: 50px;
+}
+
+.icon.active {
+    transform: rotate(-45deg);
+    background-position: -100%;
+}
+
+.icon {
+    background: linear-gradient(90deg, #9494a0 50%, #6a71d4 50%);
+    background-position: -50%;
+    background-size: 200%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 1s linear;
+    display: flex;
+    justify-content: end;
+    width: 126px;
+}
+
+.range {
+    margin-left: 10px;
+    width: 500px;
+    height: 5px;
+    background-color: #d7d7d7;
+    align-self: center;
+    border-radius: 2.5px;
+    position: relative;
+}
+
+.dot {
+    width: 20px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: #6a71d4;
+    position: absolute;
+    top: calc(var(--top) - 7.5px);
+    left: var(--left);
+}
