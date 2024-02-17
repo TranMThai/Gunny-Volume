@@ -20,6 +20,10 @@ body {
     background-position: -100%;
 }
 
+.icon.hover{
+    filter: brightness(70%);
+}
+
 .icon {
     background: linear-gradient(90deg, #9494a0 50%, #6a71d4 50%);
     background-position: -50%;

@@ -1,8 +1,16 @@
 let n = 0
 let interval
+var video = document.querySelector('video');
 
 const g = 9.8
 const t = 0.3
+
+document.querySelector('.volume').addEventListener("mouseover", (e) => {
+    document.querySelector('.icon').classList.add('hover')
+});
+document.querySelector('.volume').addEventListener("mouseout", (e) => {
+    document.querySelector('.icon').classList.remove('hover')
+});
 
 document.querySelector('.volume').addEventListener("mousedown", (e) => {
     goc = 0
@@ -44,9 +52,8 @@ document.querySelector('.volume').addEventListener("mouseup", (e) => {
         document.querySelector('.dot').style.setProperty('--top', '-' + top + 'px')
         if (left == n) {
             clearInterval(interval)
-            video.volume = n/100
+            video.volume = n / 100
         }
     }, 5)
 
 });
-var video = document.querySelector('video');
