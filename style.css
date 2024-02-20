@@ -53,6 +53,6 @@ body {
     border-radius: 50%;
     background-color: #6a71d4;
     position: absolute;
-    top: calc(var(--top) - 7.5px);
-    left: var(--left);
+    top: calc( -1* var(--top) - 7.5px);
+    left: calc(var(--left) - 10px);
 }

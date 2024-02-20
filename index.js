@@ -2,8 +2,8 @@ let n = 0
 let interval
 var video = document.querySelector('video');
 
-const g = 9.8
-const t = 0.3
+let g = 10
+let alpha = 0
 
 document.querySelector('.volume').addEventListener("mouseover", (e) => {
     document.querySelector('.icon').classList.add('hover')
@@ -13,8 +13,8 @@ document.querySelector('.volume').addEventListener("mouseout", (e) => {
 });
 
 document.querySelector('.volume').addEventListener("mousedown", (e) => {
-    goc = 0
     n = 0
+    alpha = 0
 
     clearInterval(interval)
     document.querySelector('.icon').style.transition = 'all 1s linear'
@@ -22,6 +22,7 @@ document.querySelector('.volume').addEventListener("mousedown", (e) => {
     interval = setInterval(() => {
         if (n < 100) {
             n++
+            alpha += 0.45
         }
     }, 10)
 });
@@ -31,28 +32,30 @@ document.querySelector('.volume').addEventListener("mouseup", (e) => {
     document.querySelector('.icon').classList.remove('active')
     clearInterval(interval)
 
-    let left = 0
+    let L = n
+    let v0 = (L * 5) / Math.sin(alpha * Math.PI / 180)
+    let v0y = v0 * Math.sin(alpha * Math.PI / 180)
+
+    let t = 0
+    let x = 0
     let top = n
     let bool = true
 
     interval = setInterval(() => {
-        if (left < n) {
-            left++
+        if (x < n) {
+            x++
         }
-        top = top + (n / 4 - left * 0.7) / 10
-
-
-        if (left == n) {
-            if (top < 0 || top > 0) {
-                top = 0
-            }
+        t = x * 1.09
+        let y = n / 2 + (v0y * t - (1 / 2) * g * t * t) / 100
+        if (y < 0) {
+            y = 0
         }
-
-        document.querySelector('.dot').style.setProperty('--left', left + '%')
-        document.querySelector('.dot').style.setProperty('--top', '-' + top + 'px')
-        if (left == n) {
+        document.querySelector('.dot').style.setProperty('--left', x + '%')
+        document.querySelector('.dot').style.setProperty('--top', y + 'px')
+        if (x >= n) {
+            document.querySelector('.dot').style.setProperty('--top', 0 + 'px')
+            video.volume = x / 100
             clearInterval(interval)
-            video.volume = n / 100
         }
     }, 5)
 
