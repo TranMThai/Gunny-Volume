@@ -51,9 +51,8 @@ document.querySelector('.volume').addEventListener("mouseup", (e) => {
             y = 0
         }
         document.querySelector('.dot').style.setProperty('--left', x + '%')
-        document.querySelector('.dot').style.setProperty('--top', y + 'px')
+        document.querySelector('.dot').style.setProperty('--top', (x >= n ? 0 : y) + 'px')
         if (x >= n) {
-            document.querySelector('.dot').style.setProperty('--top', 0 + 'px')
             video.volume = x / 100
             clearInterval(interval)
         }
