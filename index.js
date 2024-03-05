@@ -41,15 +41,29 @@ document.querySelector('.volume').addEventListener("mouseup", (e) => {
     let top = n
     let bool = true
 
+    // Cách 1
+    // interval = setInterval(() => {
+    //     if (x < n) {
+    //         x++
+    //     }
+    //     t = x * 1.09
+    //     let y = n / 2 + (v0y * t - (1 / 2) * g * t * t) / 100
+    //     document.querySelector('.dot').style.setProperty('--left', x + '%')
+    //     document.querySelector('.dot').style.setProperty('--top', (x >= n ? 0 : y) + 'px')
+    //     if (x >= n) {
+    //         video.volume = x / 100
+    //         clearInterval(interval)
+    //     }
+    // }, 5)
+
+    
+    // Cách 2
     interval = setInterval(() => {
         if (x < n) {
             x++
         }
-        t = x * 1.09
-        let y = n / 2 + (v0y * t - (1 / 2) * g * t * t) / 100
-        if (y < 0) {
-            y = 0
-        }
+        t++
+        let y = (n - t) + (v0y * t - (1 / 2) * g * t * t) / 100
         document.querySelector('.dot').style.setProperty('--left', x + '%')
         document.querySelector('.dot').style.setProperty('--top', (x >= n ? 0 : y) + 'px')
         if (x >= n) {
